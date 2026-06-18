@@ -34,16 +34,30 @@ export default function CustomerForm({ customer, onSave, onClose }: Props) {
   const [form, setForm] = useState<Customer>(
     customer ?? {
       id: genId('c'),
-      name: '', phone: '',
+      name: '',
+      phone: '',
+      email: '',          // 타입 명세 일치를 위한 누락 필드 추가
+      gender: '미입력',    // 컴포넌트 기본 구조와 매핑
       grade: gradeLabels[0] ?? '신규',
       source: sourceLabels[0] ?? '기타',
-      services: [], concerns: [],
-      firstVisit: todayStr, lastVisit: todayStr,
-      paymentStatus: '미결제', totalPayment: 0,
-      coach: '', coachId: '', coachName: '',
-      handicap: '', footSize: '', gloveSize: '',
+      serviceType: '',    // 타입 명세 일치를 위한 누락 필드 추가
+      concernType: '',    // 타입 명세 일치를 위한 누락 필드 추가
+      services: [],
+      concerns: [],
+      firstVisit: todayStr,
+      lastVisit: todayStr,
+      paymentStatus: '미결제',
+      totalPayment: 0,
+      coach: '',
+      coachId: '',
+      coachName: '',
+      handicap: '',
+      footSize: '',
+      gloveSize: '',
       memo: '',
-      isActive: true, createdAt: todayStr, updatedAt: nowTs(),
+      isActive: true,
+      createdAt: todayStr,
+      updatedAt: nowTs(),
     }
   );
 

@@ -18,7 +18,7 @@ export default function SettingOptionTable({ category }: Props) {
 
   const allItems = settings
     .filter((s) => s.category === category)
-    .sort((a, b) => a.sortOrder - b.sortOrder);
+    .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
 
   const items = showInactive ? allItems : allItems.filter((s) => s.isActive);
   const activeCount   = allItems.filter((s) => s.isActive).length;

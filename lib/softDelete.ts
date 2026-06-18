@@ -26,7 +26,7 @@ export function softDelete<T extends { id: string; isActive: boolean; deletedAt?
 }
 
 /** soft update: updatedAt 갱신 + prevSnapshot 보관 */
-export function softUpdate<T extends { id: string; updatedAt: string; prevSnapshot?: string }>(
+export function softUpdate<T extends { id: string; updatedAt?: string; prevSnapshot?: string }>(
   list: T[],
   id: string,
   changes: Partial<T>

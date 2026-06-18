@@ -57,17 +57,17 @@ export default function ReservationDetailModal({ reservation: r, onClose, onEdit
         {/* 내용 */}
         <div className="p-6 space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            {[
+            {([
               ['예약일', r.date],
               ['예약시간', r.time],
               ['프로그램', r.program],
               ['담당강사', r.instructor],
-              ['장소', r.room],
-              ['결제상태', r.paymentStatus],
-            ].map(([label, value]) => (
+              ['장소', r.room ?? '-'],
+              ['결제상태', r.paymentStatus ?? '-'],
+            ] as [string, string][]).map(([label, value]) => (
               <div key={label}>
                 <p className="text-xs text-gray-400 mb-0.5">{label}</p>
-                <p className={`text-sm font-medium ${label === '결제상태' ? payStyle[value] : 'text-gray-800'}`}>
+                <p className={`text-sm font-medium ${label === '결제상태' ? (payStyle[value] ?? 'text-gray-800') : 'text-gray-800'}`}>
                   {value}
                 </p>
               </div>

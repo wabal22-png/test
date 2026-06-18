@@ -51,8 +51,8 @@ export default function CustomerDetail({ customer: c, onClose }: Props) {
               <Info label="유입경로" value={c.source} />
               <Info label="담당코치" value={c.coachName || c.coach || '—'} />
               <Info label="첫 방문일" value={c.firstVisit} />
-              <Info label="최근 방문일" value={c.lastVisit} />
-              <Info label="결제 상태" value={c.paymentStatus} />
+// 뒤에 || '-' 를 붙여 undefined일 경우 하이픈으로 대체하도록 규격을 맞춰줍니다.
+<Info label="최근 방문일" value={c.lastVisit || '-'} />              <Info label="결제 상태" value={c.paymentStatus} />
               <Info label="누적 결제금액" value={`${c.totalPayment.toLocaleString()}원`} />
             </div>
           </div>

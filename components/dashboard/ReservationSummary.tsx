@@ -23,7 +23,7 @@ export default function ReservationSummary({ reservations }: { reservations: Res
   const instructorMap: Record<string, number> = {};
   todayList.forEach((r) => { instructorMap[r.instructor] = (instructorMap[r.instructor] ?? 0) + 1; });
   const roomMap: Record<string, number> = {};
-  todayList.forEach((r) => { roomMap[r.room] = (roomMap[r.room] ?? 0) + 1; });
+  todayList.forEach((r) => { const rm = r.room ?? '미지정'; roomMap[rm] = (roomMap[rm] ?? 0) + 1; });
 
   return (
     <div className="space-y-4">

@@ -53,7 +53,7 @@ export default function ReservationForm({ reservation, onSave, onClose }: Props)
 
   const selectedCustomer =
     form.customerId && form.customerName
-      ? { id: form.customerId, name: form.customerName, phone: form.customerPhone }
+      ? { id: form.customerId, name: form.customerName, phone: form.customerPhone ?? '' }
       : null;
 
   const [showNewCustomer, setShowNewCustomer] = useState(false);

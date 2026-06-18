@@ -12,9 +12,13 @@ export type SettingCategory =
 export interface SettingOption {
   id: string;
   category: SettingCategory;
-  name: string;
+  name?: string;
+  label?: string;
+  value?: string;
   isActive: boolean;
+  sortOrder?: number;
   createdAt?: string;
+  updatedAt?: string;
 }
 
 export const SETTING_CATEGORY_LABELS: Record<SettingCategory, string> = {

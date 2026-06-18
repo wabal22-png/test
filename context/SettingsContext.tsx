@@ -27,11 +27,11 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   function getActive(category: SettingCategory) {
     return settings
       .filter((s) => s.category === category && s.isActive)
-      .sort((a, b) => a.sortOrder - b.sortOrder);
+      .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
   }
 
   function getLabels(category: SettingCategory) {
-    return getActive(category).map((s) => s.label);
+    return getActive(category).map((s) => s.label ?? s.name ?? '');
   }
 
   function addOption(option: SettingOption) {
@@ -65,7 +65,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     setSettings((prev) => {
       const catItems = prev
         .filter((s) => s.category === category)
-        .sort((a, b) => a.sortOrder - b.sortOrder);
+        .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
       const others = prev.filter((s) => s.category !== category);
       const [moved] = catItems.splice(fromIdx, 1);
       catItems.splice(toIdx, 0, moved);

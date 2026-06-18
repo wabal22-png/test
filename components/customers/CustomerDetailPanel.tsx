@@ -91,7 +91,7 @@ export default function CustomerDetailPanel({ customer: c, reservationDate, rese
             <InfoRow label="유입경로" value={c.source} />
             <InfoRow label="담당코치" value={c.coachName || c.coach || '—'} />
             <InfoRow label="첫 방문일" value={c.firstVisit} />
-            <InfoRow label="최근 방문일" value={c.lastVisit} />
+            <InfoRow label="최근 방문일" value={c.lastVisit || '-'} />
             <InfoRow label="결제 상태" value={c.paymentStatus} />
             <InfoRow label="누적 결제금액" value={`${c.totalPayment.toLocaleString()}원`} />
           </div>

@@ -137,7 +137,7 @@ export default function ReservationTable({ reservations, onChange }: Props) {
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium border ${statusStyle[r.status]}`}>{r.status}</span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${payStyle[r.paymentStatus]}`}>{r.paymentStatus}</span>
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${payStyle[r.paymentStatus ?? ''] ?? ''}`}>{r.paymentStatus ?? '-'}</span>
                   </td>
                   <td className="px-4 py-3 text-[#9CA3AF] text-xs max-w-32 truncate">{r.memo || r.cancelReason || '—'}</td>
                   <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
@@ -174,7 +174,7 @@ export default function ReservationTable({ reservations, onChange }: Props) {
               </div>
               <div className="flex gap-1.5">
                 <span className={`px-2 py-0.5 rounded-full text-xs font-medium border ${statusStyle[r.status]}`}>{r.status}</span>
-                <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${payStyle[r.paymentStatus]}`}>{r.paymentStatus}</span>
+                <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${payStyle[r.paymentStatus ?? ''] ?? ''}`}>{r.paymentStatus ?? '-'}</span>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-2 text-xs">
