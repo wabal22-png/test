@@ -1,27 +1,8 @@
 'use client';
 
+import { SettingCategory, SETTING_CATEGORY_LABELS } from '@/types/setting';
 import { useSettings } from '@/context/SettingsContext';
 import { Star, Navigation, Sparkles, Brain, Dumbbell, User, MapPin } from 'lucide-react';
-
-// 외부 파일 대신 내부에 타입을 직접 정의하여 모듈 탐색 오버헤드 최적화
-export type SettingCategory = 
-  | 'customerGrade' 
-  | 'inflowPath' 
-  | 'interestService' 
-  | 'painPoint' 
-  | 'program' 
-  | 'instructor' 
-  | 'location';
-
-export const SETTING_CATEGORY_LABELS: Record<SettingCategory, string> = {
-  customerGrade: '고객 등급',
-  inflowPath: '유입 경로',
-  interestService: '관심 서비스',
-  painPoint: '불편 사항',
-  program: '프로그램',
-  instructor: '강사',
-  location: '위치',
-};
 
 const CATEGORY_ICON: Record<SettingCategory, React.ElementType> = {
   customerGrade: Star, inflowPath: Navigation, interestService: Sparkles,
