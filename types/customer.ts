@@ -23,6 +23,7 @@ export interface Customer {
   gloveSize: string;
   memo: string;
   isActive: boolean;
+  firstVisit: string; // 대시보드 통계용 최초 방문일 필드 추가 (YYYY-MM-DD)
   createdAt: string;
   updatedAt: string;
 }
