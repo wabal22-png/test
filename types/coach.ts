@@ -1,4 +1,3 @@
-// types/coach.ts
 export type CoachStatus = '활동중' | '정지' | string;
 
 export interface Coach {
@@ -6,10 +5,11 @@ export interface Coach {
   name: string;
   phone: string;
   email: string;
-  specialty: string; // 단수형 string 구조로 일치
-  memo: string;      // 누락된 메모 필드 추가
+  specialty: string;
+  memo: string;
   status: CoachStatus;
-  isActive: boolean; // 누락된 활성화 여부 필드 추가
+  isActive: boolean;
   createdAt: string;
-  updatedAt: string; // 누락된 수정일 필드 추가
+  updatedAt: string;
+  prevSnapshot?: string; // 히스토리 추적을 위한 스냅샷 필드 최적화 추가
 }
