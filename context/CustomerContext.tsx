@@ -46,10 +46,33 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
   const [customers, setCustomers] = useState<Customer[]>(mockCustomers);
   const [hydrated, setHydrated] = useState(false);
 
-  // 클라이언트에서만 localStorage 로드
+  // 클라이언트에서 초기 로드 및 DB 페칭
   useEffect(() => {
+    // 1. 로컬 데이터 먼저 표시 (깜빡임 방지)
     setCustomers(loadCustomers());
     setHydrated(true);
+
+    // 2. DB에서 최신 데이터 불러오기
+    async function fetchFromDB() {
+      try {
+        const res = await fetch('/api/customers');
+        if (res.ok) {
+          const { data } = await res.json();
+          if (data) {
+            // DB 데이터를 우선으로 적용하고, DB에 없는 로컬 데이터(mock 등)는 유지
+            setCustomers((prev) => {
+              const dbIds = new Set(data.map((c: any) => c.id));
+              const localOnly = prev.filter((c) => !dbIds.has(c.id));
+              return [...data, ...localOnly];
+            });
+          }
+        }
+      } catch (err) {
+        console.error('고객 데이터 로드 실패:', err);
+      }
+    }
+
+    fetchFromDB();
   }, []);
 
   // 변경될 때마다 localStorage에 저장
