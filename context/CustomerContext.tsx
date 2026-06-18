@@ -38,6 +38,7 @@ interface CustomerContextType {
   addCustomer: (c: Customer) => void;
   updateCustomer: (id: string, changes: Partial<Customer>) => void;
   deactivateCustomer: (id: string) => void;
+  deleteCustomer: (id: string) => Promise<void>;
 }
 
 const CustomerContext = createContext<CustomerContextType | null>(null);
@@ -111,8 +112,23 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
     );
   }
 
+  async function deleteCustomer(id: string) {
+    try {
+      const res = await fetch(`/api/customers?id=${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setCustomers((prev) => prev.filter((c) => c.id !== id));
+      } else {
+        const errorData = await res.json();
+        throw new Error(errorData.error || '삭제 실패');
+      }
+    } catch (err: any) {
+      console.error('고객 삭제 실패:', err);
+      alert(`삭제 중 오류 발생: ${err.message}`);
+    }
+  }
+
   return (
-    <CustomerContext.Provider value={{ customers, activeCustomers, addCustomer, updateCustomer, deactivateCustomer }}>
+    <CustomerContext.Provider value={{ customers, activeCustomers, addCustomer, updateCustomer, deactivateCustomer, deleteCustomer }}>
       {children}
     </CustomerContext.Provider>
   );

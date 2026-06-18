@@ -2,7 +2,7 @@
 
 import { Customer } from '@/types/customer';
 import { useState } from 'react';
-import { Search, Plus, Pencil, EyeOff, Eye } from 'lucide-react';
+import { Search, Plus, Pencil, EyeOff, Eye, Trash2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import CustomerForm from './CustomerForm';
@@ -25,7 +25,7 @@ const payBadge: Record<string, string> = {
 };
 
 export default function CustomerTable() {
-  const { customers, addCustomer, updateCustomer, deactivateCustomer } = useCustomer();
+  const { customers, addCustomer, updateCustomer, deactivateCustomer, deleteCustomer } = useCustomer();
   const { getLabels } = useSettings();
 
   const gradeLabels  = ['전체', ...getLabels('customerGrade')];
@@ -59,6 +59,12 @@ export default function CustomerTable() {
   function handleDeactivate(id: string) {
     if (confirm('이 고객을 비활성화하시겠습니까?\n데이터는 보존됩니다.')) {
       deactivateCustomer(id);
+    }
+  }
+
+  function handleDelete(id: string) {
+    if (confirm('정말로 이 고객을 삭제하시겠습니까?\n(이 작업은 되돌릴 수 없으며 데이터베이스에서 영구 삭제됩니다)')) {
+      deleteCustomer(id);
     }
   }
 
@@ -121,10 +127,10 @@ export default function CustomerTable() {
                   <td className="px-4 py-3 font-medium text-[#1F2937] whitespace-nowrap">{c.totalPayment.toLocaleString()}원</td>
                   <td className="px-4 py-3 text-[#6B7280] whitespace-nowrap">{c.coachName || c.coach || '—'}</td>
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-1">
-                      <button onClick={() => setDetailTarget(c)} className="p-1.5 rounded-lg hover:bg-[#EAF4FA] text-[#2F80A7] transition-colors"><Eye size={15} /></button>
-                      <button onClick={() => { setEditTarget(c); setFormOpen(true); }} className="p-1.5 rounded-lg hover:bg-[#F3F4F6] text-[#6B7280] transition-colors"><Pencil size={15} /></button>
-                      <button title="비활성화" onClick={() => handleDeactivate(c.id)} className="p-1.5 rounded-lg hover:bg-[#FFF6D8] text-[#9CA3AF] hover:text-[#A17400] transition-colors"><EyeOff size={15} /></button>
+                      <button onClick={() => setDetailTarget(c)} className="p-1.5 rounded-lg hover:bg-[#EAF4FA] text-[#2F80A7] transition-colors" title="상세보기"><Eye size={15} /></button>
+                      <button onClick={() => { setEditTarget(c); setFormOpen(true); }} className="p-1.5 rounded-lg hover:bg-[#F3F4F6] text-[#6B7280] transition-colors" title="수정"><Pencil size={15} /></button>
+                      <button onClick={() => handleDeactivate(c.id)} className="p-1.5 rounded-lg hover:bg-[#FFF6D8] text-[#9CA3AF] hover:text-[#A17400] transition-colors" title="비활성화"><EyeOff size={15} /></button>
+                      <button onClick={() => handleDelete(c.id)} className="p-1.5 rounded-lg hover:bg-[#FDECEA] text-[#9CA3AF] hover:text-[#C24132] transition-colors" title="영구 삭제"><Trash2 size={15} /></button>
                     </div>
                   </td>
                 </tr>
