@@ -1,0 +1,19 @@
+import { Transaction } from '@/types/transaction';
+
+export const mockTransactions: Transaction[] = [
+  { id: 't001', date: '2026-05-30', type: '입금', category: 'VIP프로그램', counterpart: '최유진', amount: 1200000, method: '계좌이체', hasReceipt: true, hasTaxInvoice: false, memo: 'VIP코칭 2개월 추가 연장', isActive: true, createdAt: '2026-05-30', updatedAt: '2026-05-30' },
+  { id: 't002', date: '2026-05-29', type: '입금', category: '수업료', counterpart: '박수연', amount: 250000, method: '카드', hasReceipt: true, hasTaxInvoice: false, memo: '5월 수업료', isActive: true, createdAt: '2026-05-29', updatedAt: '2026-05-29' },
+  { id: 't003', date: '2026-05-28', type: '출금', category: '광고비', counterpart: '메타(인스타그램)', amount: 300000, method: '카드', hasReceipt: true, hasTaxInvoice: true, memo: '5월 인스타 광고비', isActive: true, createdAt: '2026-05-28', updatedAt: '2026-05-28' },
+  { id: 't004', date: '2026-05-27', type: '출금', category: '임대료', counterpart: '건물주 박OO', amount: 1500000, method: '계좌이체', hasReceipt: false, hasTaxInvoice: false, memo: '6월 임대료 선납', isActive: true, createdAt: '2026-05-27', updatedAt: '2026-05-27' },
+  { id: 't005', date: '2026-05-25', type: '입금', category: '체험비', counterpart: '정민준', amount: 50000, method: '현금', hasReceipt: false, hasTaxInvoice: false, memo: '체험 프로그램', isActive: true, createdAt: '2026-05-25', updatedAt: '2026-05-25' },
+  { id: 't006', date: '2026-05-25', type: '입금', category: '체험비', counterpart: '임지수', amount: 50000, method: '간편결제', hasReceipt: true, hasTaxInvoice: false, memo: 'AI영상분석 체험', isActive: true, createdAt: '2026-05-25', updatedAt: '2026-05-25' },
+  { id: 't007', date: '2026-05-20', type: '출금', category: '인건비', counterpart: '이동렬 코치', amount: 2500000, method: '계좌이체', hasReceipt: false, hasTaxInvoice: false, memo: '5월 코칭 급여', isActive: true, createdAt: '2026-05-20', updatedAt: '2026-05-20' },
+  { id: 't008', date: '2026-05-18', type: '출금', category: '소모품', counterpart: '쿠팡비즈', amount: 85000, method: '카드', hasReceipt: true, hasTaxInvoice: false, memo: '스트레칭 용품 보충', isActive: true, createdAt: '2026-05-18', updatedAt: '2026-05-18' },
+  { id: 't009', date: '2026-05-15', type: '입금', category: '수업료', counterpart: '윤상호', amount: 400000, method: '카드', hasReceipt: true, hasTaxInvoice: false, memo: '5월 바디메커니즘 수업료 (부분)', isActive: true, createdAt: '2026-05-15', updatedAt: '2026-05-15' },
+  { id: 't010', date: '2026-05-10', type: '입금', category: 'VIP프로그램', counterpart: '김태현', amount: 800000, method: '계좌이체', hasReceipt: true, hasTaxInvoice: true, memo: 'VIP 월정액 5월분', isActive: true, createdAt: '2026-05-10', updatedAt: '2026-05-10' },
+  { id: 't011', date: '2026-05-05', type: '출금', category: '장비비', counterpart: '골프테크솔루션', amount: 450000, method: '카드', hasReceipt: true, hasTaxInvoice: true, memo: 'AI 분석 장비 유지보수', isActive: true, createdAt: '2026-05-05', updatedAt: '2026-05-05' },
+  { id: 't012', date: '2026-05-01', type: '입금', category: '수업료', counterpart: '김태현', amount: 300000, method: '계좌이체', hasReceipt: true, hasTaxInvoice: false, memo: '4월 추가 수업 정산', isActive: true, createdAt: '2026-05-01', updatedAt: '2026-05-01' },
+  { id: 't013', date: '2026-04-28', type: '입금', category: 'VIP프로그램', counterpart: '최유진', amount: 1200000, method: '카드', hasReceipt: true, hasTaxInvoice: false, memo: '4월 VIP 프로그램', isActive: true, createdAt: '2026-04-28', updatedAt: '2026-04-28' },
+  { id: 't014', date: '2026-04-20', type: '출금', category: '광고비', counterpart: '네이버', amount: 200000, method: '카드', hasReceipt: true, hasTaxInvoice: true, memo: '4월 블로그 상위노출 광고', isActive: true, createdAt: '2026-04-20', updatedAt: '2026-04-20' },
+  { id: 't015', date: '2026-04-15', type: '출금', category: '인건비', counterpart: '이동렬 코치', amount: 2500000, method: '계좌이체', hasReceipt: false, hasTaxInvoice: false, memo: '4월 코칭 급여', isActive: true, createdAt: '2026-04-15', updatedAt: '2026-04-15' },
+];
