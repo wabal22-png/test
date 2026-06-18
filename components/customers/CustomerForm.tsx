@@ -65,16 +65,46 @@ export default function CustomerForm({ customer, onSave, onClose }: Props) {
     return arr.includes(item) ? arr.filter((x) => x !== item) : [...arr, item];
   }
 
-  function handleSubmit(e: React.FormEvent) {
+async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name.trim()) return alert('고객명을 입력해주세요.');
-    onSave({
-      ...form,
-      updatedAt: nowTs(),
-      prevSnapshot: customer ? JSON.stringify(customer) : undefined,
-    });
-  }
 
+    try {
+      // 📦 서버 API 규격에 맞게 전송할 택배 박스(FormData) 생성
+      const formData = new FormData();
+      formData.append('id', form.id);
+      formData.append('name', form.name);
+      formData.append('phone', form.phone || '');
+      formData.append('grade', form.grade);
+      formData.append('source', form.source);
+      formData.append('coach_name', form.coachName || '');
+      formData.append('payment_status', form.paymentStatus);
+      formData.append('total_payment', String(form.totalPayment));
+      
+      // 📸 프로필 이미지가 선택되었다면 박스에 포함 (상태가 선언되어 있는 경우)
+      if (typeof imageFile !== 'undefined' && imageFile) {
+        formData.append('imageFile', imageFile);
+      }
+
+      // 백엔드 API 라우트로 전송
+      const res = await fetch('/api/customers', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || 'DB 저장 실패');
+      }
+
+      alert('성공적으로 저장되었습니다.');
+      onClose(); // 모달 닫기
+      window.location.reload(); // 실시간 데이터 갱신을 위한 새로고침
+      
+    } catch (error: any) {
+      alert(`등록 중 오류 발생: ${error.message}`);
+    }
+  }
   const chip = (active: boolean) =>
     `px-3 py-1 rounded-lg text-xs font-medium border transition-colors ${
       active ? 'bg-[#202B3F] text-white border-[#202B3F]' : 'border-[#E5E7EB] text-[#374151] hover:border-[#2F80A7]'
