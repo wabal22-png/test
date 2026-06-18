@@ -70,21 +70,18 @@ async function handleSubmit(e: React.FormEvent) {
     if (!form.name.trim()) return alert('고객명을 입력해주세요.');
 
     try {
-      const formData = new FormData();
-      formData.append('id', form.id);
-      formData.append('name', form.name);
-      formData.append('phone', form.phone || '');
-      formData.append('grade', form.grade);
-      formData.append('source', form.source);
-      formData.append('coach_name', form.coachName || '');
-      formData.append('payment_status', form.paymentStatus);
-      formData.append('total_payment', String(form.totalPayment));
-      
-      // 💡 이미지 처리 블록을 깔끔하게 제거하여 빌드 오류를 원천 차단합니다.
+      // 백엔드 API 라우트로 전체 데이터 전송 (JSON 형식)
+      const payload = {
+        ...form,
+        updatedAt: nowTs(),
+      };
 
       const res = await fetch('/api/customers', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
