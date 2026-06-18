@@ -126,7 +126,9 @@ export default function CustomerTable() {
                   </td>
                   <td className="px-4 py-3 font-medium text-[#1F2937] whitespace-nowrap">{c.totalPayment.toLocaleString()}원</td>
                   <td className="px-4 py-3 text-[#6B7280] whitespace-nowrap">{c.coachName || c.coach || '—'}</td>
-                  <td className="px-4 py-3">
+               <td className="px-4 py-3">
+                    {/* 👉 정상적인 플렉스 컨테이너 레이아웃 정렬 추가 */}
+                    <div className="flex items-center gap-1">
                       <button onClick={() => setDetailTarget(c)} className="p-1.5 rounded-lg hover:bg-[#EAF4FA] text-[#2F80A7] transition-colors" title="상세보기"><Eye size={15} /></button>
                       <button onClick={() => { setEditTarget(c); setFormOpen(true); }} className="p-1.5 rounded-lg hover:bg-[#F3F4F6] text-[#6B7280] transition-colors" title="수정"><Pencil size={15} /></button>
                       <button onClick={() => handleDeactivate(c.id)} className="p-1.5 rounded-lg hover:bg-[#FFF6D8] text-[#9CA3AF] hover:text-[#A17400] transition-colors" title="비활성화"><EyeOff size={15} /></button>
